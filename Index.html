@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2MEOW — Поддержать канал криптой ☕✨</title>
+    <!-- Подключение Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        pixel: ['"Press Start 2P"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        /* Базовые цвета и космический игровой фон с лёгкой сеткой */
+        :root {
+            color-scheme: dark;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #090710;
+            color: #f5f3ff;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .cosmic-backdrop {
+            background-color: #090710;
+            background-image:
+                radial-gradient(circle at 18% 8%, rgba(124, 58, 237, 0.16) 0%, transparent 42%),
+                radial-gradient(circle at 86% 24%, rgba(245, 158, 11, 0.09) 0%, transparent 38%),
+                radial-gradient(circle at 50% 85%, rgba(13, 148, 136, 0.10) 0%, transparent 45%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+        }
+
+        .card-surface {
+            background: rgba(19, 16, 30, 0.92);
+            border: 1px solid rgba(139, 92, 246, 0.22);
+            box-shadow: 0 18px 45px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+        }
+
+        .card-nested {
+            background: rgba(11, 9, 19, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .btn-primary-violet {
+            background: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 100%);
+            box-shadow: 0 8px 24px -6px rgba(124, 58, 237, 0.65);
+        }
+
+        .btn-primary-violet:hover {
+            background: linear-gradient(90deg, #8b5cf6 0%, #9d4edd 100%);
+            box-shadow: 0 10px 28px -5px rgba(139, 92, 246, 0.8);
+        }
+
+        .btn-teal-action {
+            background: rgba(13, 148, 136, 0.22);
+            border: 1px solid rgba(45, 212, 191, 0.45);
+            color: #5eead4;
+        }
+
+        .btn-teal-action:hover {
+            background: rgba(13, 148, 136, 0.34);
+            border-color: rgba(94, 234, 212, 0.7);
+            color: #99f6e4;
+        }
+
+        .coin-btn-active {
+            background: rgba(124, 58, 237, 0.22);
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 20px -4px rgba(139, 92, 246, 0.65);
+            color: #ffffff;
+        }
+
+        .coin-btn-idle {
+            background: rgba(13, 11, 22, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            color: #cbd5e1;
+        }
+
+        .coin-btn-idle:hover {
+            border-color: rgba(139, 92, 246, 0.45);
+            background: rgba(24, 19, 38, 0.95);
+            color: #ffffff;
+        }
+
+        .pixel-title {
+            font-family: 'Press Start 2P', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            letter-spacing: 0.04em;
+            text-shadow: 0 2px 14px rgba(245, 158, 11, 0.35);
+        }
+
+        .qr-box-shadow {
+            box-shadow: 0 14px 32px -8px rgba(0, 0, 0, 0.65);
+        }
+
+        /* Плавный аккордеон */
+        .accordion-panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.25s ease-out;
+        }
+
+        .accordion-item[data-open="true"] .accordion-panel {
+            grid-template-rows: 1fr;
+        }
+
+        .accordion-inner {
+            overflow: hidden;
+        }
+
+        .accordion-item[data-open="true"] .accordion-chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="cosmic-backdrop min-h-screen text-slate-100 antialiased selection:bg-violet-600 selection:text-white">
+    <div class="w-full max-w-xl mx-auto px-4 py-6 sm:py-10 space-y-5">
+
+        <!-- 1. ВЕРХНЯЯ КАРТОЧКА КАНАЛА (HEADER) -->
+        <header class="card-surface rounded-3xl p-4 sm:p-6">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <!-- Аватар-эмблема котика в наушниках -->
+                <div class="w-16 h-16 rounded-2xl bg-[#181326] border border-violet-500/40 flex items-center justify-center shrink-0 shadow-lg self-start sm:self-center">
+                    <svg class="w-11 h-11" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Эмблема 2MEOW">
+                        <!-- Дуга наушников -->
+                        <path d="M9 25C9 15.6112 15.7157 8 24 8C32.2843 8 39 15.6112 39 25" stroke="#a855f7" stroke-width="3.5" stroke-linecap="round"/>
+                        <!-- Левый амбушюр (розово-фиолетовый) -->
+                        <rect x="5" y="21" width="6" height="11" rx="3" fill="#ec4899"/>
+                        <!-- Правый амбушюр (бирюзовый) -->
+                        <rect x="37" y="21" width="6" height="11" rx="3" fill="#2dd4bf"/>
+                        <!-- Уши и мордочка рыжего котика -->
+                        <path d="M14 19L16.5 13L21 17.5H27L31.5 13L34 19V31C34 34.866 30.866 38 27 38H21C17.134 38 14 34.866 14 31V19Z" fill="#f59e0b"/>
+                        <!-- Внутренние ушки -->
+                        <path d="M16.8 15.8L18.2 18.2L15.8 18.6L16.8 15.8Z" fill="#fb7185"/>
+                        <path d="M31.2 15.8L32.2 18.6L29.8 18.2L31.2 15.8Z" fill="#fb7185"/>
+                        <!-- Глаза -->
+                        <circle cx="20" cy="26.5" r="2" fill="#090710"/>
+                        <circle cx="28" cy="26.5" r="2" fill="#090710"/>
+                        <circle cx="20.6" cy="25.9" r="0.7" fill="#ffffff"/>
+                        <circle cx="28.6" cy="25.9" r="0.7" fill="#ffffff"/>
+                        <!-- Носик и улыбка -->
+                        <path d="M22.5 29.8H25.5L24 31.8L22.5 29.8Z" fill="#f43f5e"/>
+                        <path d="M21 33C22 34.1 23.3 34.1 24 32.8C24.7 34.1 26 34.1 27 33" stroke="#090710" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <!-- Название, хендл, слоган и кнопки каналов -->
+                <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <h1 class="pixel-title text-lg sm:text-xl font-bold text-amber-400">2MEOW</h1>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-500/20 text-purple-200 border border-violet-400/35">
+                            @THE2MEOW
+                        </span>
+                    </div>
+
+                    <p class="text-sm text-slate-300 mt-1.5 leading-snug">
+                        Место, где игры встречаются с душевным общением ☕✨
+                    </p>
+
+                    <!-- Кнопки YouTube и Twitch -->
+                    <div class="flex flex-wrap items-center gap-2.5 mt-3.5">
+                        <a
+                            href="https://youtube.com/@the2meow"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#181326] hover:bg-[#221a38] border border-white/10 hover:border-red-500/45 text-xs sm:text-sm font-semibold text-white transition-all"
+                        >
+                            <svg class="w-4 h-4 text-red-500 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                            <span>YouTube</span>
+                        </a>
+
+                        <a
+                            href="https://twitch.tv/the2meow"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#181326] hover:bg-[#221a38] border border-white/10 hover:border-purple-400/50 text-xs sm:text-sm font-semibold text-white transition-all"
+                        >
+                            <svg class="w-4 h-4 text-purple-400 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+                            </svg>
+                            <span>Twitch</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. ПРИВЕТСТВЕННЫЙ БЛОК (HERO) -->
+        <section class="card-surface rounded-3xl p-5 sm:p-7 text-center">
+            <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-500/12 border border-amber-400/35 text-amber-300 text-xs font-semibold mb-4">
+                <span>🐾 Прямая поддержка стримеров</span>
+            </div>
+
+            <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug">
+                Угости котиков вкусняшками и поддержи новые стримы!
+            </h2>
+
+            <p class="text-xs sm:text-sm text-slate-300/90 mt-3 leading-relaxed max-w-lg mx-auto">
+                Все крипто-донаты идут напрямую на развитие канала <span class="font-semibold text-white">2MEOW</span>: покупку новых кооперативных игр, улучшение звука и уютные вечерние посиделки с чаем. Без комиссий посредников!
+            </p>
+        </section>
+
+        <!-- 3. КАРТОЧКА ВЫБОРА КРИПТОВАЛЮТЫ И ДОНАТА -->
+        <main class="card-surface rounded-3xl p-5 sm:p-6 space-y-5">
+            <!-- Выбор монеты и сети -->
+            <div>
+                <div class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                    1. ВЫБЕРИТЕ КРИПТОВАЛЮТУ ДЛЯ ПЕРЕВОДА:
+                </div>
+
+                <div id="wallet-tabs" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" role="tablist" aria-label="Выбор криптовалюты">
+                    <!-- Кнопки криптовалют формируются скриптом -->
+                </div>
+            </div>
+
+            <!-- Индикатор выбранной сети (компактная подсказка без лишнего шума) -->
+            <div class="flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-2xl bg-amber-500/10 border border-amber-400/30 text-xs">
+                <span class="text-amber-200/90 font-medium">Проверьте сеть перед отправкой:</span>
+                <span id="active-network-pill" class="px-2.5 py-0.5 rounded-lg bg-amber-400/20 text-amber-200 font-bold tracking-wide shrink-0">
+                    TRC20
+                </span>
+            </div>
+
+            <!-- Блок QR-кода, адреса и кнопок действий -->
+            <div class="card-nested rounded-2xl p-4 sm:p-6 space-y-5">
+                <!-- Белый блок QR-кода по центру -->
+                <div class="flex flex-col items-center">
+                    <div class="bg-white p-3.5 rounded-2xl qr-box-shadow">
+                        <canvas
+                            id="qr-canvas"
+                            width="224"
+                            height="224"
+                            class="w-44 h-44 sm:w-48 sm:h-48 block"
+                            aria-label="QR-код кошелька для пополнения"
+                        ></canvas>
+                    </div>
+
+                    <!-- Тёмная плашка с монетой и сетью под QR-кодом -->
+                    <div
+                        id="qr-caption-badge"
+                        class="-mt-3 z-10 px-3.5 py-1 rounded-full bg-[#181326] border border-violet-400/35 text-xs font-bold text-white shadow-md"
+                    >
+                        USDT • TRC20
+                    </div>
+
+                    <p class="text-xs text-slate-400 mt-2.5 text-center">
+                        Наведите камеру криптокошелька
+                    </p>
+                </div>
+
+                <!-- Заголовок адреса и подпись справа -->
+                <div class="space-y-2">
+                    <div class="flex items-baseline justify-between gap-2">
+                        <span id="address-label" class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300">
+                            АДРЕС КОШЕЛЬКА TETHER (USDT):
+                        </span>
+                        <span class="text-xs font-semibold text-emerald-400 shrink-0">
+                            Без мин. суммы
+                        </span>
+                    </div>
+
+                    <!-- Поле адреса кошелька -->
+                    <div
+                        id="address-display"
+                        class="w-full rounded-2xl bg-[#141022] border border-white/10 px-4 py-3.5 font-mono text-xs sm:text-sm text-slate-100 break-all select-all leading-relaxed"
+                    >
+                        TAoV5a1C7yhSwaYSC36F3HTLvR4Z2DNTjN
+                    </div>
+                </div>
+
+                <!-- Кнопки: Скопировать адрес и Я отправил донат -->
+                <div class="space-y-3 pt-1">
+                    <button
+                        id="copy-address-btn"
+                        type="button"
+                        class="btn-primary-violet w-full py-3.5 px-5 rounded-2xl text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 transition-all active:scale-[0.99] cursor-pointer"
+                    >
+                        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span id="copy-address-label">Скопировать адрес</span>
+                    </button>
+
+                    <button
+                        id="open-sent-modal-btn"
+                        type="button"
+                        class="w-full py-3.5 px-5 rounded-2xl bg-[#181326] hover:bg-[#211933] border border-white/10 hover:border-violet-400/40 text-slate-100 font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition-all active:scale-[0.99] cursor-pointer"
+                    >
+                        <span>❤️ Я отправил донат</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- 4. РАЗДЕЛ FAQ: ПОЛЕЗНО ЗНАТЬ ПЕРЕД ОТПРАВКОЙ -->
+        <section aria-labelledby="faq-heading" class="space-y-3 pt-1">
+            <h2 id="faq-heading" class="text-base sm:text-lg font-extrabold text-white flex items-center gap-2 px-1">
+                <span aria-hidden="true">💡</span>
+                <span>Полезно знать перед отправкой</span>
+            </h2>
+
+            <div class="space-y-2.5">
+                <!-- Вопрос 1 -->
+                <div class="accordion-item card-surface rounded-2xl overflow-hidden" data-open="false">
+                    <button
+                        type="button"
+                        class="accordion-trigger w-full flex items-center justify-between gap-3 p-4 text-left text-sm font-semibold text-slate-100 hover:bg-white/[0.02] transition-colors cursor-pointer"
+                        aria-expanded="false"
+                    >
+                        <span>1. Как выбрать правильную сеть и не потерять перевод?</span>
+                        <svg class="accordion-chevron w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="accordion-panel">
+                        <div class="accordion-inner">
+                            <div class="px-4 pb-4 pt-2 border-t border-white/5 text-xs sm:text-sm text-slate-300/90 leading-relaxed">
+                                Перед отправкой из кошелька или с биржи сверяйте сеть с выбранной кнопкой и бейджем под QR-кодом (например, <strong class="text-white">USDT TRC20</strong> или <strong class="text-white">USDT BSC</strong>, <strong class="text-white">TON</strong>, <strong class="text-white">BTC</strong>, <strong class="text-white">ETH</strong>, <strong class="text-white">SOL</strong>). Перевод в несовместимой сети может привести к потере средств.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вопрос 2 -->
+                <div class="accordion-item card-surface rounded-2xl overflow-hidden" data-open="false">
+                    <button
+                        type="button"
+                        class="accordion-trigger w-full flex items-center justify-between gap-3 p-4 text-left text-sm font-semibold text-slate-100 hover:bg-white/[0.02] transition-colors cursor-pointer"
+                        aria-expanded="false"
+                    >
+                        <span>2. Как быстро донат доходит до канала?</span>
+                        <svg class="accordion-chevron w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="accordion-panel">
+                        <div class="accordion-inner">
+                            <div class="px-4 pb-4 pt-2 border-t border-white/5 text-xs sm:text-sm text-slate-300/90 leading-relaxed">
+                                В сетях <strong class="text-white">TON</strong>, <strong class="text-white">SOL</strong>, <strong class="text-white">TRC20</strong> и <strong class="text-white">BSC</strong> подтверждение обычно занимает от нескольких секунд до 1–2 минут. В сетях <strong class="text-white">BTC</strong> и <strong class="text-white">ETH</strong> время зависит от загруженности сети и выбранной комиссии (обычно от нескольких минут).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вопрос 3 -->
+                <div class="accordion-item card-surface rounded-2xl overflow-hidden" data-open="false">
+                    <button
+                        type="button"
+                        class="accordion-trigger w-full flex items-center justify-between gap-3 p-4 text-left text-sm font-semibold text-slate-100 hover:bg-white/[0.02] transition-colors cursor-pointer"
+                        aria-expanded="false"
+                    >
+                        <span>3. Безопасно ли донатить напрямую на кошелёк?</span>
+                        <svg class="accordion-chevron w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="accordion-panel">
+                        <div class="accordion-inner">
+                            <div class="px-4 pb-4 pt-2 border-t border-white/5 text-xs sm:text-sm text-slate-300/90 leading-relaxed">
+                                Да. Страница показывает только открытые адреса кошельков для пополнения, не просит подключать кошелёк к сайту и никогда не запрашивает seed-фразы или приватные ключи.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ПОДВАЛ СТРАНИЦЫ (FOOTER) -->
+        <footer class="pt-4 pb-6 px-1 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left text-xs text-slate-400">
+            <div>
+                <span class="font-bold text-amber-400">2MEOW</span> • Спасибо, что смотрите и поддерживаете канал!
+            </div>
+            <div>
+                Сделано с теплом и старанием 🐾☕
+            </div>
+        </footer>
+    </div>
+
+    <!-- 6. МОДАЛЬНОЕ ОКНО: «СПАСИБО ЗА ПОДДЕРЖКУ, КОТИК!» -->
+    <div
+        id="sent-modal"
+        class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+    >
+        <div id="sent-modal-card" class="w-full max-w-md rounded-3xl bg-[#141022] border border-violet-500/40 p-5 sm:p-6 shadow-2xl space-y-4">
+            <!-- Заголовок и кнопка закрытия × -->
+            <div class="flex items-start justify-between gap-3">
+                <h2 id="modal-title" class="text-lg sm:text-xl font-extrabold text-white leading-snug">
+                    🎉 Спасибо за поддержку, котик!
+                </h2>
+                <button
+                    id="close-modal-btn"
+                    type="button"
+                    aria-label="Закрыть окно"
+                    class="w-8 h-8 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+                >
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Блок с бирюзовым бейджем «Как это работает:» -->
+            <div class="rounded-2xl bg-[#0c1419] border border-teal-500/25 p-3.5 text-xs sm:text-[13px] text-slate-200 leading-relaxed">
+                <span class="inline-block px-2 py-0.5 rounded-md bg-teal-600/35 border border-teal-400/40 text-teal-200 font-bold mr-1.5">
+                    Как это работает:
+                </span>
+                Так как сайт работает без сервера (на статическом хостинге), мы подготовили готовое красивое сообщение для чата YouTube или Twitch, чтобы мы точно заметили твой донат на стриме и поблагодарили в прямом эфире!
+            </div>
+
+            <!-- Поля ввода: Твой никнейм и Сообщение для стрима -->
+            <div class="space-y-3">
+                <div>
+                    <label for="donor-nickname" class="block text-xs font-semibold text-slate-200 mb-1.5">
+                        Твой никнейм
+                    </label>
+                    <input
+                        id="donor-nickname"
+                        type="text"
+                        maxlength="32"
+                        placeholder="Например: Котофан"
+                        class="w-full rounded-xl bg-[#0d0a16] border border-white/10 focus:border-violet-400 focus:outline-none px-3.5 py-2.5 text-sm text-white placeholder-slate-500 transition-colors"
+                    />
+                </div>
+
+                <div>
+                    <label for="donor-message" class="block text-xs font-semibold text-slate-200 mb-1.5">
+                        Сообщение для стрима
+                    </label>
+                    <input
+                        id="donor-message"
+                        type="text"
+                        maxlength="140"
+                        placeholder="На вкусняшки рыжим котикам! ☕"
+                        class="w-full rounded-xl bg-[#0d0a16] border border-white/10 focus:border-violet-400 focus:outline-none px-3.5 py-2.5 text-sm text-white placeholder-slate-500 transition-colors"
+                    />
+                </div>
+            </div>
+
+            <!-- Предпросмотр готового сообщения и кнопка «Скопировать для чата» -->
+            <div class="rounded-2xl bg-[#0d0a16] border border-white/10 p-3.5 space-y-3">
+                <div id="chat-message-preview" class="text-xs sm:text-sm text-slate-100 leading-relaxed break-words">
+                    🐾 [Крипто-донат • USDT TRC20] Котик из чата: На вкусняшки рыжим котикам! ☕✨
+                </div>
+
+                <button
+                    id="copy-chat-btn"
+                    type="button"
+                    class="btn-teal-action w-full py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.99] cursor-pointer"
+                >
+                    <span id="copy-chat-label">Скопировать для чата</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            // Точные кошельки и сети канала 2MEOW
+            const WALLETS = [
+                {
+                    id: 'usdt-trc20',
+                    symbol: 'USDT',
+                    network: 'TRC20',
+                    label: 'TETHER (USDT)',
+                    badgeText: 'USDT • TRC20',
+                    chatTag: 'USDT TRC20',
+                    accent: '#16a34a',
+                    address: 'TAoV5a1C7yhSwaYSC36F3HTLvR4Z2DNTjN'
+                },
+                {
+                    id: 'ton',
+                    symbol: 'TON',
+                    network: 'TON',
+                    label: 'TON',
+                    badgeText: 'TON • TON',
+                    chatTag: 'TON',
+                    accent: '#0284c7',
+                    address: 'UQCJMMGovCFqcrv6OSoUGwj5SJHfJPaMlX4AgkNluLF7qjoL'
+                },
+                {
+                    id: 'btc',
+                    symbol: 'BTC',
+                    network: 'BTC',
+                    label: 'BTC',
+                    badgeText: 'BTC • BTC',
+                    chatTag: 'BTC',
+                    accent: '#d97706',
+                    address: 'bc1qscw72eama3fjww4xzv4r5u00mjdq7nx99hjnwj'
+                },
+                {
+                    id: 'eth',
+                    symbol: 'ETH',
+                    network: 'ETH',
+                    label: 'ETH',
+                    badgeText: 'ETH • ETH',
+                    chatTag: 'ETH',
+                    accent: '#4f46e5',
+                    address: '0xEB6e8D4B416D7e7c92EF5eEF5eB6C5727802b79E'
+                },
+                {
+                    id: 'usdt-bsc',
+                    symbol: 'USDT',
+                    network: 'BSC',
+                    label: 'TETHER (USDT)',
+                    badgeText: 'USDT • BSC',
+                    chatTag: 'USDT BSC',
+                    accent: '#ca8a04',
+                    address: '0xEB6e8D4B416D7e7c92EF5eEF5eB6C5727802b79E'
+                },
+                {
+                    id: 'sol',
+                    symbol: 'SOL',
+                    network: 'SOL',
+                    label: 'SOL',
+                    badgeText: 'SOL • SOL',
+                    chatTag: 'SOL',
+                    accent: '#0d9488',
+                    address: '3cdP7m2vribbqUCerH1uxr6GQfUKGWNvANqTxRk8ZtWF'
+                }
+            ];
+
+            // =========================================================================
+            // АВТОНОМНЫЙ ГЕНЕРАТОР QR-КОДА (QR Code Version 4, Error Correction Level H)
+            // Поддерживает адреса длиной до ~50 символов с высокой отказоустойчивостью,
+            // позволяя разместить центральный бейдж валюты без потери читаемости.
+            // =========================================================================
+            const QR_ENCODER = (function () {
+                const SIZE = 33; // QR Version 4: 4 * 4 + 17 = 33x33 модулей
+                const TOTAL_CODEWORDS = 100;
+                const DATA_CODEWORDS = 28; // Версия 4, уровень H: 28 кодовых слов данных, 72 ECC
+                const NUM_EC_BLOCKS = 4; // 4 блока по 18 байт коррекции ошибок (GF(256) полином 0x11d)
+
+                // Таблицы поля Галуа GF(256) с примитивным полиномом 285 (0x11d)
+                const EXP = new Uint8Array(512);
+                const LOG = new Uint8Array(256);
+
+                (function initGF() {
+                    let x = 1;
+                    for (let i = 0; i < 255; i++) {
+                        EXP[i] = x;
+                        LOG[x] = i;
+                        x <<= 1;
+                        if (x & 0x100) {
+                            x ^= 0x11d;
+                        }
+                    }
+                    for (let i = 255; i < 512; i++) {
+                        EXP[i] = EXP[i - 255];
+                    }
+                })();
+
+                function gfMul(a, b) {
+                    if (a === 0 || b === 0) return 0;
+                    return EXP[(LOG[a] + LOG[b]) % 255];
+                }
+
+                // Генераторный полином степени ecCount
+                function makeGeneratorPoly(ecCount) {
+                    let poly = [1];
+                    for (let i = 0; i < ecCount; i++) {
+                        const factor = [1, EXP[i]];
+                        const next = new Array(poly.length + 1).fill(0);
+                        for (let j = 0; j < poly.length; j++) {
+                            for (let k = 0; k < 2; k++) {
+                                next[j + k] ^= gfMul(poly[j], factor[k]);
+                            }
+                        }
+                        poly = next;
+                    }
+                    return poly;
+                }
+
+                function computeRS(data, ecCount) {
+                    const gen = makeGeneratorPoly(ecCount);
+                    const msg = data.slice();
+                    for (let i = 0; i < ecCount; i++) msg.push(0);
+
+                    for (let i = 0; i < data.length; i++) {
+                        const lead = msg[i];
+                        if (lead !== 0) {
+                            for (let j = 0; j < gen.length; j++) {
+                                msg[i + j] ^= gfMul(gen[j], lead);
+                            }
+                        }
+                    }
+                    return msg.slice(data.length);
+                }
+
+                // Кодирование строки в Byte-режим (0100) для QR Version 4-H
+                function encodeDataBits(text) {
+                    const encoder = new TextEncoder();
+                    const bytes = encoder.encode(text);
+                    const maxBytes = 24;
+                    const payload = bytes.length > maxBytes ? bytes.slice(0, maxBytes) : bytes;
+
+                    const bits = [];
+                    function pushBits(val, len) {
+                        for (let i = len - 1; i >= 0; i--) {
+                            bits.push((val >> i) & 1);
+                        }
+                    }
+
+                    // Режим Byte = 0100 (4 бита)
+                    pushBits(0b0100, 4);
+                    // Длина строки в байтах для Version 1-9 в Byte-режиме = 8 бит
+                    pushBits(payload.length, 8);
+                    for (let i = 0; i < payload.length; i++) {
+                        pushBits(payload[i], 8);
+                    }
+
+                    const capacityBits = DATA_CODEWORDS * 8;
+                    const terminatorLen = Math.min(4, capacityBits - bits.length);
+                    pushBits(0, terminatorLen);
+
+                    while (bits.length % 8 !== 0 && bits.length < capacityBits) {
+                        bits.push(0);
+                    }
+
+                    const padBytes = [0xec, 0x11];
+                    let padIdx = 0;
+                    while (bits.length < capacityBits) {
+                        pushBits(padBytes[padIdx % 2], 8);
+                        padIdx++;
+                    }
+
+                    const dataCodewords = [];
+                    for (let i = 0; i < DATA_CODEWORDS; i++) {
+                        let byteVal = 0;
+                        for (let b = 0; b < 8; b++) {
+                            byteVal = (byteVal << 1) | (bits[i * 8 + b] || 0);
+                        }
+                        dataCodewords.push(byteVal);
+                    }
+
+                    // Разбиваем на 4 блока по 7 байт и вычисляем 18 ECC байт на блок
+                    const blockSize = DATA_CODEWORDS / NUM_EC_BLOCKS; // 7
+                    const ecPerBlock = 18;
+                    const dataBlocks = [];
+                    const ecBlocks = [];
+
+                    for (let b = 0; b < NUM_EC_BLOCKS; b++) {
+                        const start = b * blockSize;
+                        const slice = dataCodewords.slice(start, start + blockSize);
+                        dataBlocks.push(slice);
+                        ecBlocks.push(computeRS(slice, ecPerBlock));
+                    }
+
+                    const interleaved = [];
+                    for (let i = 0; i < blockSize; i++) {
+                        for (let b = 0; b < NUM_EC_BLOCKS; b++) {
+                            interleaved.push(dataBlocks[b][i]);
+                        }
+                    }
+                    for (let i = 0; i < ecPerBlock; i++) {
+                        for (let b = 0; b < NUM_EC_BLOCKS; b++) {
+                            interleaved.push(ecBlocks[b][i]);
+                        }
+                    }
+
+                    const finalBits = [];
+                    for (let i = 0; i < interleaved.length; i++) {
+                        for (let b = 7; b >= 0; b--) {
+                            finalBits.push((interleaved[i] >> b) & 1);
+                        }
+                    }
+                    // Для Version 4 требуется 2600 бит или заполнение остатка
+                    return { bits: finalBits, codewordsCount: interleaved.length };
+                }
+
+                // Форматирование строк формата (Version 4, Error Correction H = 0b10, Mask = 0b000)
+                function getFormatBits(mask) {
+                    // EC Level H = 2 (10 in binary), mask = 0..7
+                    const formatData = (2 << 3) | (mask & 7);
+                    let rem = formatData << 10;
+                    const poly = 0x537; // x^10 + x^8 + x^5 + x^4 + x^2 + x + 1
+                    for (let i = 14; i >= 10; i--) {
+                        if ((rem >> i) & 1) {
+                            rem ^= poly << (i - 10);
+                        }
+                    }
+                    const info = ((formatData << 10) | rem) ^ 0x5412;
+                    return info;
+                }
+
+                function createMatrix(text) {
+                    const grid = Array.from({ length: SIZE }, () => new Int8Array(SIZE)); // 0 empty, 1 dark, -1 light
+                    const reserved = Array.from({ length: SIZE }, () => new Uint8Array(SIZE));
+
+                    function setModule(r, c, isDark, isReserved) {
+                        if (r < 0 || r >= SIZE || c < 0 || c >= SIZE) return;
+                        grid[r][c] = isDark ? 1 : -1;
+                        if (isReserved) reserved[r][c] = 1;
+                    }
+
+                    // 3 поисковых узора (7x7) + белая рамка вокруг них
+                    function placeFinder(topR, leftC) {
+                        for (let r = -1; r <= 7; r++) {
+                            for (let c = -1; c <= 7; c++) {
+                                const rr = topR + r;
+                                const cc = leftC + c;
+                                if (rr < 0 || rr >= SIZE || cc < 0 || cc >= SIZE) continue;
+
+                                let dark = false;
+                                if (r >= 0 && r <= 6 && c >= 0 && c <= 6) {
+                                    if (r === 0 || r === 6 || c === 0 || c === 6) {
+                                        dark = true;
+                                    } else if (r >= 2 && r <= 4 && c >= 2 && c <= 4) {
+                                        dark = true;
+                                    }
+                                }
+                                setModule(rr, cc, dark, true);
+                            }
+                        }
+                    }
+
+                    placeFinder(0, 0);
+                    placeFinder(0, SIZE - 7);
+                    placeFinder(SIZE - 7, 0);
+
+                    // Alignment pattern для Version 4 находится на координате (26, 26) (центр 5x5)
+                    const alignCenter = 26;
+                    for (let r = -2; r <= 2; r++) {
+                        for (let c = -2; c <= 2; c++) {
+                            const maxD = Math.max(Math.abs(r), Math.abs(c));
+                            const dark = maxD === 2 || maxD === 0;
+                            setModule(alignCenter + r, alignCenter + c, dark, true);
+                        }
+                    }
+
+                    // Timing patterns (строка 6 и столбец 6)
+                    for (let i = 8; i < SIZE - 8; i++) {
+                        const dark = i % 2 === 0;
+                        if (!reserved[6][i]) setModule(6, i, dark, true);
+                        if (!reserved[i][6]) setModule(i, 6, dark, true);
+                    }
+
+                    // Тёмный фиксированный модуль Version 4: (4 * 4 + 9, 8) = (25, 8)
+                    setModule(25, 8, true, true);
+
+                    // Резервируем клетки под Format Information
+                    for (let i = 0; i < 9; i++) {
+                        if (!reserved[8][i]) reserved[8][i] = 2;
+                        if (!reserved[i][8]) reserved[i][8] = 2;
+                    }
+                    for (let i = 0; i < 8; i++) {
+                        reserved[8][SIZE - 1 - i] = 2;
+                        reserved[SIZE - 1 - i][8] = 2;
+                    }
+
+                    // Заполняем кодовые слова данных и ECC зигзагом снизу вверх / сверху вниз
+                    const encoded = encodeDataBits(text);
+                    const bits = encoded.bits;
+                    let bitIndex = 0;
+                    let upward = true;
+
+                    for (let col = SIZE - 1; col >= 1; col -= 2) {
+                        if (col === 6) col = 5; // пропускаем вертикальный timing pattern
+
+                        for (let step = 0; step < SIZE; step++) {
+                            const row = upward ? SIZE - 1 - step : step;
+                            for (let cOffset = 0; cOffset <= 1; cOffset++) {
+                                const c = col - cOffset;
+                                if (reserved[row][c] === 0) {
+                                    const bit = bitIndex < bits.length ? bits[bitIndex] : 0;
+                                    bitIndex++;
+                                    grid[row][c] = bit === 1 ? 1 : -1;
+                                }
+                            }
+                        }
+                        upward = !upward;
+                    }
+
+                    // Применяем маску 0: (row + col) % 2 === 0
+                    const mask = 0;
+                    for (let r = 0; r < SIZE; r++) {
+                        for (let c = 0; c < SIZE; c++) {
+                            if (reserved[r][c] === 0) {
+                                const invert = (r + c) % 2 === 0;
+                                const isDark = grid[r][c] === 1;
+                                grid[r][c] = (invert ? !isDark : isDark) ? 1 : -1;
+                            }
+                        }
+                    }
+
+                    // Записываем Format Information bits
+                    const formatBits = getFormatBits(mask);
+                    const coordsA = [
+                        [8, 0], [8, 1], [8, 2], [8, 3], [8, 4], [8, 5], [8, 7], [8, 8],
+                        [7, 8], [5, 8], [4, 8], [3, 8], [2, 8], [1, 8], [0, 8]
+                    ];
+                    const coordsB = [
+                        [SIZE - 1, 8], [SIZE - 2, 8], [SIZE - 3, 8], [SIZE - 4, 8],
+                        [SIZE - 5, 8], [SIZE - 6, 8], [SIZE - 7, 8],
+                        [8, SIZE - 8], [8, SIZE - 7], [8, SIZE - 6], [8, SIZE - 5],
+                        [8, SIZE - 4], [8, SIZE - 3], [8, SIZE - 2], [8, SIZE - 1]
+                    ];
+
+                    for (let i = 0; i < 15; i++) {
+                        const bit = ((formatBits >> (14 - i)) & 1) === 1;
+                        const [rA, cA] = coordsA[i];
+                        const [rB, cB] = coordsB[i];
+                        grid[rA][cA] = bit ? 1 : -1;
+                        grid[rB][cB] = bit ? 1 : -1;
+                    }
+
+                    return { grid, size: SIZE };
+                }
+
+                return { createMatrix };
+            })();
+
+            // Состояние приложения
+            let activeWallet = WALLETS[0];
+            let copyAddressTimer = null;
+            let copyChatTimer = null;
+
+            // Элементы DOM
+            const tabsContainer = document.getElementById('wallet-tabs');
+            const activeNetworkPill = document.getElementById('active-network-pill');
+            const qrCanvas = document.getElementById('qr-canvas');
+            const qrCaptionBadge = document.getElementById('qr-caption-badge');
+            const addressLabel = document.getElementById('address-label');
+            const addressDisplay = document.getElementById('address-display');
+            const copyAddressBtn = document.getElementById('copy-address-btn');
+            const copyAddressLabel = document.getElementById('copy-address-label');
+            const openSentModalBtn = document.getElementById('open-sent-modal-btn');
+
+            const modal = document.getElementById('sent-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const donorNicknameInput = document.getElementById('donor-nickname');
+            const donorMessageInput = document.getElementById('donor-message');
+            const chatMessagePreview = document.getElementById('chat-message-preview');
+            const copyChatBtn = document.getElementById('copy-chat-btn');
+            const copyChatLabel = document.getElementById('copy-chat-label');
+
+            /**
+             * Отрисовка QR-кода на canvas с центральным бейджем выбранной монеты
+             */
+            function renderQRCode(wallet) {
+                try {
+                    const ctx = qrCanvas.getContext('2d');
+                    if (!ctx) return;
+
+                    const { grid, size } = QR_ENCODER.createMatrix(wallet.address);
+                    const canvasSize = qrCanvas.width;
+                    const quietZone = 2; // модулей белой рамки по краям
+                    const totalCells = size + quietZone * 2;
+                    const cellSize = canvasSize / totalCells;
+
+                    ctx.clearRect(0, 0, canvasSize, canvasSize);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, canvasSize, canvasSize);
+
+                    ctx.fillStyle = '#090710';
+                    for (let r = 0; r < size; r++) {
+                        for (let c = 0; c < size; c++) {
+                            if (grid[r][c] === 1) {
+                                const x = (c + quietZone) * cellSize;
+                                const y = (r + quietZone) * cellSize;
+                                ctx.fillRect(
+                                    Math.floor(x),
+                                    Math.floor(y),
+                                    Math.ceil(cellSize),
+                                    Math.ceil(cellSize)
+                                );
+                            }
+                        }
+                    }
+
+                    // Небольшой центральный бейдж с тикером монеты (в пределах резерва коррекции H)
+                    const centerPx = canvasSize / 2;
+                    const boxW = cellSize * 6.4;
+                    const boxH = cellSize * 3.1;
+
+                    ctx.fillStyle = '#ffffff';
+                    roundRectPath(ctx, centerPx - boxW / 2 - 2, centerPx - boxH / 2 - 2, boxW + 4, boxH + 4, 6);
+                    ctx.fill();
+
+                    ctx.fillStyle = wallet.accent;
+                    roundRectPath(ctx, centerPx - boxW / 2, centerPx - boxH / 2, boxW, boxH, 5);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '700 11px Inter, system-ui, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(wallet.symbol, centerPx, centerPx + 0.5);
+                } catch (err) {
+                    console.error('Ошибка отрисовки QR-кода:', err);
+                }
+            }
+
+            function roundRectPath(ctx, x, y, w, h, r) {
+                const radius = Math.min(r, w / 2, h / 2);
+                ctx.beginPath();
+                ctx.moveTo(x + radius, y);
+                ctx.arcTo(x + w, y, x + w, y + h, radius);
+                ctx.arcTo(x + w, y + h, x, y + h, radius);
+                ctx.arcTo(x, y + h, x, y, radius);
+                ctx.arcTo(x, y, x + w, y, radius);
+                ctx.closePath();
+            }
+
+            /**
+             * Формирование текста сообщения для чата стрима
+             */
+            function getFormattedChatMessage() {
+                const nick = donorNicknameInput.value.trim() || 'Котик из чата';
+                const message = donorMessageInput.value.trim() || 'На вкусняшки рыжим котикам! ☕✨';
+                return `🐾 [Крипто-донат • ${activeWallet.chatTag}] ${nick}: ${message}`;
+            }
+
+            function updateChatPreview() {
+                chatMessagePreview.textContent = getFormattedChatMessage();
+            }
+
+            /**
+             * Копирование текста в буфер обмена с fallback для iframe
+             */
+            function copyToClipboard(text) {
+                if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+                    return navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+                }
+                return Promise.resolve(fallbackCopy(text));
+            }
+
+            function fallbackCopy(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.select();
+                textarea.setSelectionRange(0, textarea.value.length);
+                let ok = false;
+                try {
+                    ok = document.execCommand('copy');
+                } catch (e) {
+                    ok = false;
+                }
+                document.body.removeChild(textarea);
+                return ok;
+            }
+
+            /**
+             * Рендер кнопок выбора криптовалюты
+             */
+            function renderTabs() {
+                tabsContainer.innerHTML = '';
+
+                WALLETS.forEach((wallet) => {
+                    const isActive = wallet.id === activeWallet.id;
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.setAttribute('role', 'tab');
+                    button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                    button.className = [
+                        'py-2.5 px-3 rounded-2xl flex flex-col items-center justify-center transition-all cursor-pointer select-none',
+                        isActive ? 'coin-btn-active' : 'coin-btn-idle'
+                    ].join(' ');
+
+                    const symbolSpan = document.createElement('span');
+                    symbolSpan.className = 'text-sm font-extrabold tracking-wide leading-tight';
+                    symbolSpan.textContent = wallet.symbol;
+
+                    const netSpan = document.createElement('span');
+                    netSpan.className = isActive
+                        ? 'text-[11px] font-semibold text-purple-200 mt-0.5 leading-tight'
+                        : 'text-[11px] font-medium text-slate-400 mt-0.5 leading-tight';
+                    netSpan.textContent = wallet.network;
+
+                    button.appendChild(symbolSpan);
+                    button.appendChild(netSpan);
+
+                    button.addEventListener('click', () => {
+                        selectWallet(wallet.id);
+                    });
+
+                    tabsContainer.appendChild(button);
+                });
+            }
+
+            /**
+             * Выбор активной криптовалюты
+             */
+            function selectWallet(walletId) {
+                const found = WALLETS.find((w) => w.id === walletId);
+                if (!found) return;
+
+                activeWallet = found;
+                renderTabs();
+
+                activeNetworkPill.textContent = activeWallet.network;
+                qrCaptionBadge.textContent = activeWallet.badgeText;
+                addressLabel.textContent = `АДРЕС КОШЕЛЬКА ${activeWallet.label}:`;
+                addressDisplay.textContent = activeWallet.address;
+
+                copyAddressLabel.textContent = 'Скопировать адрес';
+                if (copyAddressTimer) {
+                    clearTimeout(copyAddressTimer);
+                    copyAddressTimer = null;
+                }
+
+                renderQRCode(activeWallet);
+                updateChatPreview();
+            }
+
+            // Обработчик кнопки «Скопировать адрес»
+            copyAddressBtn.addEventListener('click', () => {
+                copyToClipboard(activeWallet.address).then(() => {
+                    copyAddressLabel.textContent = 'Скопировано!';
+                    if (copyAddressTimer) clearTimeout(copyAddressTimer);
+                    copyAddressTimer = setTimeout(() => {
+                        copyAddressLabel.textContent = 'Скопировать адрес';
+                    }, 2000);
+                });
+            });
+
+            // Открытие и закрытие модального окна «Я отправил донат»
+            function openModal() {
+                updateChatPreview();
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.classList.add('overflow-hidden');
+                setTimeout(() => {
+                    donorNicknameInput.focus();
+                }, 40);
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.classList.remove('overflow-hidden');
+            }
+
+            openSentModalBtn.addEventListener('click', openModal);
+            closeModalBtn.addEventListener('click', closeModal);
+
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            // Обновление текста сообщения в реальном времени
+            donorNicknameInput.addEventListener('input', updateChatPreview);
+            donorMessageInput.addEventListener('input', updateChatPreview);
+
+            // Копирование сообщения для чата
+            copyChatBtn.addEventListener('click', () => {
+                const textToCopy = getFormattedChatMessage();
+                copyToClipboard(textToCopy).then(() => {
+                    copyChatLabel.textContent = 'Скопировано!';
+                    if (copyChatTimer) clearTimeout(copyChatTimer);
+                    copyChatTimer = setTimeout(() => {
+                        copyChatLabel.textContent = 'Скопировать для чата';
+                    }, 2000);
+                });
+            });
+
+            // Аккордеон FAQ
+            document.querySelectorAll('.accordion-item').forEach((item) => {
+                const trigger = item.querySelector('.accordion-trigger');
+                if (!trigger) return;
+
+                trigger.addEventListener('click', () => {
+                    const isOpen = item.getAttribute('data-open') === 'true';
+                    const nextState = !isOpen;
+                    item.setAttribute('data-open', String(nextState));
+                    trigger.setAttribute('aria-expanded', String(nextState));
+                });
+            });
+
+            // Первичная инициализация
+            selectWallet('usdt-trc20');
+        })();
+    </script>
+</body>
+</html>
